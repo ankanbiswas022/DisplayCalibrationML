@@ -12,11 +12,11 @@ Associated files which need to be present in the task directory:
 (4) Alert function 
 (5) Task related audio stimuli 
 
-Note: 
+**Note: **
 
 Every time you run the task, a .cfg file is created in the task directory. This has all the configuration details 
 which are set in the control GUI. 
 
-Disclaimer: 
+**Disclaimer: **
 
 For creating the following files we have adapted ML helper functions. Audio files were taken from the the Lablib. 
