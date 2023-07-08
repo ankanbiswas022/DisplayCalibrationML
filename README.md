@@ -1,5 +1,5 @@
 # DisplayCalibrationML
-This folder contains all the necessary files needed to display primary colors using MonkeyLogic(ML).
+This folder contains all the necessary files needed to display colors: RGB and Gray at 11 intensity levels between 0 to 1 using MonkeyLogic(ML).
 
 **ML needs following files:**
 
