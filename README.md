@@ -19,4 +19,4 @@ which are set in the control GUI. <br>
 
 **Disclaimer:**
 
-For creating the following files we have adapted ML helper functions. Audio files were taken from the the Lablib. 
+For creating the following files we have adapted ML helper functions. Audio files were taken from the Lablib. 
