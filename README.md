@@ -1,11 +1,14 @@
 # DisplayCalibrationML
 This folder contains all the necessary files needed to display colors: RGB and Gray at 11 intensity levels between 0 to 1 using MonkeyLogic(ML).
+The task can run in two modes: 
+(1) Display calibration mode: In this mode, stimulus would be displayed and Spectroradiometer(PR-655) would measure and save the spectra data.
+(2) Task mode: This is a deafult mode for running any task. 
 
 **ML needs following files:**
 
 (1) Conditions file (MonitorCalibrationConditions) <br>
 (2) Timing file (MonitorCalibrationTiming) <br>
-(3) function to make the stimulus(makeStim.m) <br>
+(3) Function to make the stimulus(makeStim.m) <br>
 
 Associated files which need to be present in the task directory: <br>
 
