@@ -30,6 +30,6 @@ Note that this Repo is under active development. <br>
 In case you have any are facing any problem or have any particular development in mind, kindly create issue in the Repo. <br>
 
 
-**Disclaimer:** <br>
+**Source:** <br>
 For creating the following files we have adapted ML helper functions. Audio files were taken from the Lablib. 
 
