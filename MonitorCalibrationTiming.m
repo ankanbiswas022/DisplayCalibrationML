@@ -12,26 +12,23 @@ hotkey('x', 'escape_screen(); assignin(''caller'',''continue_'',false);');
 set_bgcolor([0.5 0.5 0.5]);                                         % sets subject screen background color to Gray
 editable('pulseDuration','stimulus_duration','fix_radius');         % adds the variables on the Control screen to make on the fly changes
 
-if MLConfig.ExperimentName(1)=='D'
-    MLConfig.CondLogic=3;
+if strcmp(MLConfig.ExperimentName,'DCM')
     % Display Calibration Mode
     global PRport fileroot LumValues
-    fixation_point = 1;
+
+    MLConfig.CondLogic=3;  
     stimulus = 2;
-    stimDurForMeasure = 3000;
-    
+    stimDurForMeasure = 3000;    
     tc = TimeCounter(null_);
     tc.Duration = stimDurForMeasure;         % in milliseconds
-    sceneMeasure = create_scene(tc,[fixation_point stimulus]);
+    sceneMeasure = create_scene(tc,stimulus);
     run_scene(sceneMeasure);
 
     if  TrialRecord.CurrentCondition==1
         % Init folder
         LumValues = [];
-        deviceName = MLConfig.ExperimentName;
-        thisCalibName = [date,'_',deviceName];
-        thisCalibFolder = fullfile('..', 'DisplayCalibrationML','measurements', thisCalibName);
-        mkdir(thisCalibFolder);
+        thisCalibName = MLConfig.FormattedName;
+        thisCalibFolder = fullfile('..', 'DisplayCalibrationML','measurements');
         fileroot = fullfile(thisCalibFolder, filesep, thisCalibName);
         % Init PR655
         addpath(genpath(fullfile(pwd,'PR655connPTB')));
@@ -68,7 +65,7 @@ else
     % time intervals (in ms):
     wait_for_fix = 1000;
     initial_fix = 1000;
-    stimulus_duration = 3000;
+    stimulus_duration = 10000;
     pulseDuration = 50;
 
     % fixation window (in degrees):
@@ -113,9 +110,9 @@ else
 
     % TASK:
     error_type = 0;
-    if calibrateFlag==0
-        run_scene(sceneStart);
-    end
+
+    run_scene(sceneStart);
+
     run_scene(scene1,10);        % Run the first scene (eventmaker 10)
     if ~wth1.Success             % If the WithThenHold failed (either fixation is not acquired or broken during hold),
         if wth1.Waiting          % check whether we were waiting for fixation.
