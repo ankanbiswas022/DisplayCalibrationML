@@ -85,7 +85,7 @@ if ~nargin || isempty(PortString)
     end
     
     if IsWin
-        PortDB = { 'com1', 'com2', 'com3', 'com4', 'com5' };
+        PortDB = { 'com1', 'com2', 'com3', 'com4', 'com5','com6', 'com7', 'com8', 'com9', 'com10' };
     end
     selectionType = 'default';
 else	

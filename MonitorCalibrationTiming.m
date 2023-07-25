@@ -12,7 +12,7 @@ hotkey('x', 'escape_screen(); assignin(''caller'',''continue_'',false);');
 set_bgcolor([0.5 0.5 0.5]);                                         % sets subject screen background color to Gray
 editable('pulseDuration','stimulus_duration','fix_radius');         % adds the variables on the Control screen to make on the fly changes
 
-if strcmp(MLConfig.ExperimentName,'DCM')
+if contains(MLConfig.SubjectName,'DCM')
     % Display Calibration Mode
     global PRport fileroot LumValues
 
@@ -37,7 +37,12 @@ if strcmp(MLConfig.ExperimentName,'DCM')
     end
     % Take Measurements and save them
     currCond = TrialRecord.CurrentCondition;
-    value = TrialRecord.CurrentConditionInfo.v;
+    if strcmp(MLConfig.SubjectName,'DCM')
+        % for standard Calibration
+        value = TrialRecord.CurrentConditionInfo.v;
+    else
+        value = currCond;
+    end
     [xyYcie, xyYJudd, Spectrum] = getSpectraValPR655;
     LumValues(currCond,1).gunValue=value;
     LumValues(currCond,1).xyYcie=xyYcie;
@@ -64,13 +69,14 @@ else
 
     % time intervals (in ms):
     wait_for_fix = 1000;
-    initial_fix = 1000;
-    stimulus_duration = 10000;
+    initial_fix = 1250;         %baseLine-period
+    stimulus_duration = 1250;   %stimulus-period
     pulseDuration = 50;
 
     % fixation window (in degrees):
-    fix_radius = [4 4];
-    hold_radius = fix_radius ;
+    fix_radius = [1.5 1.5];
+    hold_radius = fix_radius;
+    
 
     % creating Scenes
     % scene 0
@@ -88,12 +94,13 @@ else
 
     % scene 1: fixation
     fix1 = SingleTarget(tracker);  % We use eye signals (eye_) for tracking. The SingleTarget adapter
-    fix1.Target = fixation_point;  %    examines if the gaze is in the Threshold window around the Target.
+    fix1.Target = fixation_point;  % examines if the gaze is in the Threshold window around the Target.
     fix1.Threshold = fix_radius;   % The Target can be either TaskObject# or [x y] (in degrees).
 
     wth1 = WaitThenHold(fix1);     % The WaitThenHold adapter waits for WaitTime until the fixation
-    wth1.WaitTime = wait_for_fix;  %    is acquired and then checks whether the fixation is held for HoldTime.
-    wth1.HoldTime = initial_fix;   % Since WaitThenHold gets the fixation status from SingleTarget,
+    wth1.WaitTime = wait_for_fix;  % is acquired and then checks whether the fixation is held for HoldTime.
+    wth1.HoldTime = initial_fix;   % Since WaitThenHold10
+    % gets the fixation status from SingleTarget,
     % SingleTarget (fix1) must be the input argument of WaitThenHold (wth1).
 
     scene1 = create_scene(wth1,fixation_point);  % In this scene, we will present the fixation_point (TaskObject #1)
@@ -110,7 +117,6 @@ else
 
     % TASK:
     error_type = 0;
-
     run_scene(sceneStart);
 
     run_scene(scene1,10);        % Run the first scene (eventmaker 10)
