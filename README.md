@@ -21,7 +21,7 @@ which are set in the control GUI. <br>
 
 **Testing:** <br>
 The task was tested on MonkeyLogic Version 2.2.32(Jan7,2023). <br>
-If you are facing any issue while running the task, it might be related to the version of the monkeyLogic yiu are using. <br>
+If you are facing any issue while running the task, it might be related to the version of the monkeyLogic you are using. <br>
 kindly update the monkeyLogic and use the version on which the task was tested. <br> 
 
 **Use:** <br>
